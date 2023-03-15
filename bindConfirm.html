@@ -69,21 +69,21 @@
         }
 
         .confirm_button {
-            background-color:dodgerblue;
-            color:white;
+            background-color: dodgerblue;
+            color: white;
             width: 300px;
             height: 47px;
-            border:0;
+            border: 0;
             font-size: 16px;
             border-radius: 30px;
         }
 
         .cancel_button {
-            background-color:grey;
-            color:white;
+            background-color: grey;
+            color: white;
             width: 300px;
             height: 47px;
-            border:0;
+            border: 0;
             font-size: 16px;
             border-radius: 30px;
         }
@@ -96,15 +96,36 @@
         <h3 class="body_content_title">汉度协同办公系统</h3>
         <h3 class="body_content_main">是否要将此账号与此微信号绑定？</h3>
         <h5 class="body_content_tip">
-            <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx50fb3d16e4ed687f&redirect_uri=http%3A%2F%2F101.33.230.230%3A1116%2Foauth%2Fcallback%2F1&response_type=code&scope=snsapi_userinfo&state=3f2b3839aff8a5d4d2243277d3379e81#wechat_redirect">
-                <button class="confirm_button">确认</button>
-            </a>
-            <button class="cancel_button" onclick="window.close();">取消</button>
+            <button class="confirm_button" onclick="window.location.href=getLink()">确认</button>
+<!--            <button class="cancel_button" onclick="closePage()">取消</button>-->
         </h5>
     </div>
     <div class="footer">
         <span>Copyright © 2021-2022 hd.work All Rights Reserved.</span>
     </div>
 </div>
+<script>
+    function getUrl(url) {
+        let arr = url.split('?');
+        let params = arr[1].split('&');
+        let obj = {};
+        for (let i = 0; i < params.length; i++) {
+            let param = params[i].split('=');
+            obj[param[0]] = param[1];
+        }
+        return obj;
+    }
+
+    function getLink() {
+        return getUrl(window.location.search)['link']
+    }
+
+    function closePage() {
+        window.opener=null;
+        window.open('','_self');
+        window.close();
+    }
+
+</script>
 </body>
 </html>
